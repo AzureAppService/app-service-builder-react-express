@@ -5,6 +5,7 @@ import { createServer } from 'node:http'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 import { stripVTControlCharacters } from 'node:util'
+import apiPackageJson from './api/package.json' with { type: 'json' }
 import { createApp } from './api/src/app.js'
 
 test('manifest keeps separate frontend and API roots and routes', async () => {
@@ -119,7 +120,7 @@ test('built frontend and real API share one local origin', { timeout: 30000 }, a
     ['/version.json', { app: 'app-service-builder-react-express-web' }],
     ['/api/health', { status: 'ok', app: 'app-service-builder-react-express-api' }],
     ['/api/status', { status: 'available' }],
-    ['/api/version', { app: 'app-service-builder-react-express-api', framework: 'Express 5.1.0' }],
+    ['/api/version', { app: 'app-service-builder-react-express-api', framework: `Express ${apiPackageJson.dependencies.express}` }],
     ['/api/request', { method: 'GET', path: '/api/request' }],
   ]) {
     const response = await fetch(new URL(path, origin))
