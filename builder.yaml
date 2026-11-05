@@ -1,0 +1,14 @@
+components:
+  - name: web
+    rootDirectory: web
+    path: /
+
+  - name: api
+    rootDirectory: api
+    role: web
+    platform: nodejs
+    path: /api
+    run:
+      port: 8080
+      start: npm start
+      healthCheckPath: /api/health

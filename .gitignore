@@ -1,0 +1,8 @@
+web/node_modules/
+web/dist/
+api/node_modules/
+coverage/
+.env
+.env.*
+!.env.example
+npm-debug.log*

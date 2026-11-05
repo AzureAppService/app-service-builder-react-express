@@ -1,0 +1,18 @@
+{
+  "name": "app-service-builder-react-express-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Express API component for the App Service Builder React and Express sample.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "5.1.0"
+  }
+}

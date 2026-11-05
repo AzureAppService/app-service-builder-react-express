@@ -1,0 +1,5 @@
+{
+  "app": "app-service-builder-react-express-web",
+  "version": "1.0.0",
+  "framework": "React 19 with Vite 8"
+}
