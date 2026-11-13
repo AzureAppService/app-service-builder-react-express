@@ -1,4 +1,14 @@
-# App Service Builder: React + Express sample
+ # App Service Builder: React + Express sample
+
+ ## Local page preview
+
+ ![React and Express root page with same-origin API status, in-page health and version checks, and customization help](docs/images/sample.png)
+
+ Rendered locally from the production React build with the real local Express API;
+ Azure deployment was not performed or verified. The useful page is at `/`.
+ Health and version checks display responses on the page rather than navigate to
+ raw endpoints. Expand **Customize this sample** for the files to edit in your own
+ fork. App Service Builder and React documentation are named separately.
 
 A standalone React frontend and Express API deployed as two components behind
 one public hostname with

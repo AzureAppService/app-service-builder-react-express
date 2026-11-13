@@ -13,6 +13,25 @@ function Layout({ eyebrow, title, children }) {
 }
 
 function Home() {
+  const [inspection, setInspection] = useState('Choose a health or version check. Results stay on this page.')
+  const [checking, setChecking] = useState(false)
+  async function inspect(path) {
+    setChecking(true)
+    setInspection(`Checking ${path}...`)
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 5000)
+    try {
+      const response = await fetch(path, { signal: controller.signal })
+      const body = await response.text()
+      if (!response.ok) throw new Error(`HTTP ${response.status}`)
+      setInspection(`${path} · HTTP ${response.status}\n${body}\nHealth checks show process readiness only, not Azure deployment status.`)
+    } catch {
+      setInspection(`${path} could not be checked. Confirm the frontend and API are reachable, then retry.`)
+    } finally {
+      clearTimeout(timeout)
+      setChecking(false)
+    }
+  }
   const [apiState, setApiState] = useState({
     status: 'loading',
     message: 'Contacting the Express API...',
@@ -50,7 +69,7 @@ function Home() {
         The static React frontend and Express API share one public hostname.
       </p>
 
-      <section className="api-card" data-state={apiState.status}>
+      <section className="api-card" data-state={apiState.status} aria-live="polite">
         <h2>Same-origin API status</h2>
         <p>
           <strong>{apiState.status}</strong>: {apiState.message}
@@ -61,10 +80,16 @@ function Home() {
         <Link className="button" to="/products/widget-1">
           Open the frontend deep route
         </Link>
-        <a href="/api/health">View API health</a>
-        <a href="/api/version">View API version</a>
-        <a href="/version.json">View frontend version</a>
+        <button type="button" disabled={checking} onClick={() => inspect('/api/health')}>Check API health</button>
+        <button type="button" disabled={checking} onClick={() => inspect('/api/version')}>Check API version</button>
+        <button type="button" disabled={checking} onClick={() => inspect('/version.json')}>Check frontend version</button>
       </nav>
+      <pre className="inspection" role="status">{inspection}</pre>
+      <details>
+        <summary>Customize this sample</summary>
+        <p>Edit <code>web/src/App.jsx</code> in your own fork to change this page. Edit <code>api/src/app.js</code> to change the API response. Rebuild, test, commit and redeploy your fork; this page does not edit GitHub.</p>
+      </details>
+      <p><a href="https://builderapps.azure.com/docs/">App Service Builder documentation</a> · <a href="https://react.dev/learn">React documentation</a></p>
     </Layout>
   )
 }

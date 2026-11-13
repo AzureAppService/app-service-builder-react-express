@@ -62,3 +62,37 @@ nav {
   background: #fff2f2;
   border-color: #e1a3a3;
 }
+
+button {
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd4ff;
+  border-radius: 0.5rem;
+  background: #f5f7ff;
+  color: #273a91;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover { background: #e5eaff; }
+button:disabled { opacity: 0.65; cursor: wait; }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 3px solid #3349ad;
+  outline-offset: 4px;
+}
+
+.inspection {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 1rem 0;
+  line-height: 1.6;
+  border-block: 1px solid #dce3ee;
+}
+
+details { margin-top: 2rem; line-height: 1.6; }
+summary { cursor: pointer; font-weight: 700; padding-block: 0.75rem; }
+code { overflow-wrap: anywhere; }
+
+@media (max-width: 600px) {
+  main { width: calc(100% - 2rem); margin: 1rem auto; padding: 1.25rem; }
+  nav { align-items: stretch; flex-direction: column; }
+}
