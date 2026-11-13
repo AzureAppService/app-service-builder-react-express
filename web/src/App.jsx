@@ -4,10 +4,21 @@ import './App.css'
 
 function Layout({ eyebrow, title, children }) {
   return (
-    <main>
+    <main className="sample-sheet">
+      <header className="sample-header">
+        <Link className="sample-brand" to="/"><img src="/brand/builder.svg" alt="" width="32" height="32" />App Service Builder</Link>
+        <nav aria-label="Documentation">
+          <a href="https://react.dev/learn">React documentation</a>
+          <a href="https://expressjs.com/">Express documentation</a>
+          <a href="https://builder.appservice.azure.com/docs/">App Service Builder documentation</a>
+        </nav>
+      </header>
+      <div className="sample-content">
+      <div className="ecosystem-logo"><img src="/brand/react.png" alt="React" width="52" height="52" /><span>+</span><img className="wordmark" src="/brand/nodejs.svg" alt="Node.js" width="110" height="52" /><span>Express</span></div>
       <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       {children}
+      </div>
     </main>
   )
 }
@@ -87,9 +98,19 @@ function Home() {
       <pre className="inspection" role="status">{inspection}</pre>
       <details>
         <summary>Customize this sample</summary>
-        <p>Edit <code>web/src/App.jsx</code> in your own fork to change this page. Edit <code>api/src/app.js</code> to change the API response. Rebuild, test, commit and redeploy your fork; this page does not edit GitHub.</p>
+        <p>Edit <code>web/src/App.jsx</code> in your own fork to change this page and
+          <code> web/public/brand/family.v1.css</code> for its styles. Edit <code>api/src/app.js</code>
+          to change the API response. Rebuild, test, commit and redeploy your fork; this page does not edit GitHub.</p>
       </details>
-      <p><a href="https://builder.appservice.azure.com/docs/">App Service Builder documentation</a> · <a href="https://react.dev/learn">React documentation</a></p>
+      <details>
+        <summary>Logo sources &amp; notices</summary>
+        <p>Unmodified <a href="https://react.dev/">React artwork</a> and
+          <a href="https://nodejs.org/en/about/branding">Node.js artwork</a> identify the
+          frontend and Express runtime. React is a trademark of Meta Platforms, Inc.;
+          Node.js is a trademark of the OpenJS Foundation
+          (<a href="https://trademark-policy.openjsf.org/">policy</a>).
+          App Service Builder uses its supplied official mark. No endorsement implied.</p>
+      </details>
     </Layout>
   )
 }

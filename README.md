@@ -4,11 +4,27 @@
 
  ![React and Express root page with same-origin API status, in-page health and version checks, and customization help](docs/images/sample.png)
 
- Rendered locally from the production React build with the real local Express API;
+ **LOCAL — Microsoft Edge, 1440px desktop, root `/`.**
+ Rendered from the production React build with the real local Express API;
  Azure deployment was not performed or verified. The useful page is at `/`.
  Health and version checks display responses on the page rather than navigate to
  raw endpoints. Expand **Customize this sample** for the files to edit in your own
  fork. App Service Builder and React documentation are named separately.
+
+The paired daylight composition preserves the same-origin API status card,
+health/version checks, and React Router paths. Edit `web/src/App.jsx` for content
+and `web/public/brand/family.v1.css` for the visual family; baseline styles remain
+in `web/src/App.css`. Express documentation is separate from Builder guidance.
+
+### Logo provenance
+
+`web/public/brand/builder.svg` is the supplied official App Service Builder mark.
+`react.png` is the unmodified [official React site icon](https://react.dev/apple-touch-icon.png).
+`nodejs.svg` is the unmodified [official dark horizontal Node.js SVG](https://nodejs.org/static/logos/nodejsDark.svg),
+identifying Express's runtime. React is a trademark of Meta Platforms, Inc.;
+Node.js is a trademark of the OpenJS Foundation, subject to its
+[trademark policy](https://trademark-policy.openjsf.org/).
+Logos identify the stack; no endorsement is implied.
 
 A standalone React frontend and Express API deployed as two components behind
 one public hostname with
