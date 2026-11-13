@@ -29,7 +29,7 @@ test('manifest keeps separate frontend and API roots and routes', async () => {
 
 test('frontend build contains only static assets and public metadata', async () => {
   const entries = await readdir(new URL('./web/dist/', import.meta.url))
-  assert.deepEqual(entries.sort(), ['assets', 'index.html', 'version.json'])
+  assert.deepEqual(entries.sort(), ['assets', 'brand', 'index.html', 'version.json'])
   const version = JSON.parse(await readFile(new URL('./web/dist/version.json', import.meta.url), 'utf8'))
   assert.deepEqual(version, {
     app: 'app-service-builder-react-express-web',
@@ -104,16 +104,19 @@ test('built frontend and real API share one local origin', { timeout: 30000 }, a
   const scripts = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map((match) => match[1])
   const styles = [...html.matchAll(/<link\b[^>]*\bhref="([^"]+\.css)"/g)].map((match) => match[1])
   assert.equal(scripts.length, 1)
-  assert.equal(styles.length, 1)
+  assert.equal(styles.length, 2)
   for (const [asset, contentType] of [
     ...scripts.map((asset) => [asset, /javascript/]),
     ...styles.map((asset) => [asset, /text\/css/]),
+    ['/brand/builder.svg', /image\/svg\+xml/],
+    ['/brand/react.png', /image\/png/],
+    ['/brand/nodejs.svg', /image\/svg\+xml/],
   ]) {
-    assert.match(asset, /^\/assets\/[\w-]+\.(js|css)$/)
+    assert.match(asset, /^\/(?:assets\/[\w-]+\.(?:js|css)|brand\/[\w.-]+\.(?:css|svg|png))$/)
     const response = await fetch(new URL(asset, origin))
     assert.equal(response.status, 200)
     assert.match(response.headers.get('content-type'), contentType)
-    assert.ok((await response.text()).length > 0)
+    assert.ok((await response.arrayBuffer()).byteLength > 0)
   }
 
   for (const [path, expected] of [

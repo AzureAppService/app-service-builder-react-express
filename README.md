@@ -1,8 +1,34 @@
-# App Service Builder: React + Express sample
+ # App Service Builder: React + Express sample
+
+ ## Local page preview
+
+ ![React and Express root page with same-origin API status, in-page health and version checks, and customization help](docs/images/sample.png)
+
+ **LOCAL — Microsoft Edge, 1440px desktop, root `/`.**
+ Rendered from the production React build with the real local Express API;
+ Azure deployment was not performed or verified. The useful page is at `/`.
+ Health and version checks display responses on the page rather than navigate to
+ raw endpoints. Expand **Customize this sample** for the files to edit in your own
+ fork. App Service Builder and React documentation are named separately.
+
+The paired daylight composition preserves the same-origin API status card,
+health/version checks, and React Router paths. Edit `web/src/App.jsx` for content
+and `web/public/brand/family.v1.css` for the visual family; baseline styles remain
+in `web/src/App.css`. Express documentation is separate from Builder guidance.
+
+### Logo provenance
+
+`web/public/brand/builder.svg` is the supplied official App Service Builder mark.
+`react.png` is the unmodified [official React site icon](https://react.dev/apple-touch-icon.png).
+`nodejs.svg` is the unmodified [official dark horizontal Node.js SVG](https://nodejs.org/static/logos/nodejsDark.svg),
+identifying Express's runtime. React is a trademark of Meta Platforms, Inc.;
+Node.js is a trademark of the OpenJS Foundation, subject to its
+[trademark policy](https://trademark-policy.openjsf.org/).
+Logos identify the stack; no endorsement is implied.
 
 A standalone React frontend and Express API deployed as two components behind
 one public hostname with
-[Azure App Service Builder](https://builderapps.azure.com/docs/). Vite builds
+[Azure App Service Builder](https://builder.appservice.azure.com/docs/). Vite builds
 the frontend into static files; Express runs as a separate Node.js process.
 The browser calls relative `/api` URLs, so no CORS configuration, database,
 external service, or parent workspace is required.
@@ -212,7 +238,7 @@ repository source root, or publish source files as static output.
 
 ## Deploy your fork through Builder Portal
 
-Follow the [Portal quickstart](https://builderapps.azure.com/docs/quickstarts/portal/)
+Follow the [Portal quickstart](https://builder.appservice.azure.com/docs/quickstarts/portal/)
 for your authorized Private Preview environment:
 
 1. Commit and push the sample to the `main` branch of your GitHub repository.
@@ -240,7 +266,7 @@ appears in `/api/health`. Both default to `local` and are intentionally public.
 Configure these values for the API through Portal **Variables**, then deploy
 to apply them to the running application. Saving variables alone does not
 establish that the active deployment changed. See the
-[variables guide](https://builderapps.azure.com/docs/guides/variables/).
+[variables guide](https://builder.appservice.azure.com/docs/guides/variables/).
 The frontend's static version JSON does not read runtime variables.
 
 For code changes, run the tests and production build, commit, and push to your
@@ -256,9 +282,9 @@ Deleting the app does not delete your GitHub repository or local clone.
 
 ## Resources and contributions
 
-- [App Service Builder documentation](https://builderapps.azure.com/docs/)
-- [Sample catalog](https://builderapps.azure.com/docs/samples/)
-- [Manifest guide](https://builderapps.azure.com/docs/guides/builder-yaml/)
+- [App Service Builder documentation](https://builder.appservice.azure.com/docs/)
+- [Sample catalog](https://builder.appservice.azure.com/docs/samples/)
+- [Manifest guide](https://builder.appservice.azure.com/docs/guides/builder-yaml/)
 - [Contributing](CONTRIBUTING.md)
 - [Code of Conduct](.github/CODE_OF_CONDUCT.md)
 - [Security reporting](SECURITY.md)
